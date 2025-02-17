@@ -65,25 +65,48 @@ function displayController() {
             gameboard.printBoard();
         }
         if (checkWinner()) {
-            gameboard.createBoard();
+            gameboard.printBoard();
+            console.log(`Game over! The winner is ${getActivePlayer().name}`);
         };
-        switchActivePlayer();
+        if (checkTie()) {
+            gameboard.printBoard();
+            console.log('It\'s a tie!');
+        }
     }
 
     const checkWinner = () => {
-        let row = 0;
-        let column = 0;
-        for (row; row < 3; row++) {
-            if (board[row] == board[row + 1] == board[row + 2]) {
-                
+        for (let i = 0; i < board.length; i++) {
+            if (board[i][0] == board[i][1] == board[i][2]) {
+                return true;
+            }
+            if (board[0][i] == board[1][i] == board[2][i]) {
+                return true;
             }
         }
+        if (board[0][0] == board[1][1] == board[2][2]) {
+            return true;
+        }
+        if (board[0][2] == board[1][1] == board[2][0]) {
+            return true;
+        }
+
+        return false;
+    }
+
+    const checkTie = () => {
+        const cellValue = board.find((value) => value == '_');
+        if (cellValue == undefined) {
+            return true;
+        }
+
+        return false;
     }
 
     return {
         playerOne,
         activePlayer,
         makePlay,
+        checkWinner,
     }
 }
 

@@ -1,14 +1,13 @@
 const gameboard = (function () {
+    const height = 3;
     const board = [];
 
-    let numberOfPlayers = 0;
-    const getNumberOfPlayers = () => numberOfPlayers;
-    const addNumberOfPlayers = () => numberOfPlayers++;
-
-    for (let i = 0; i < board.length; i++) {
-        board[i] = [];
-        for (let j = 0; j < board.length; j++) {
-            board[i][j] = '_';
+    const createBoard = () => {
+        for (let i = 0; i < height; i++) {
+            board[i] = [];
+            for (let j = 0; j < height; j++) {
+                board[i][j] = '_';
+            }
         }
     }
 
@@ -19,8 +18,10 @@ const gameboard = (function () {
         }
     }
 
+
     return {
         board,
+        createBoard,
         printBoard,
     }
 })();
@@ -39,6 +40,7 @@ function createPlayer(name, marker) {
 }
 
 function displayController() {
+    const board = gameboard.board;
     const playerOne = createPlayer('quim', 'X');
     const playerTwo = createPlayer('blan', 'O');
 
@@ -48,16 +50,33 @@ function displayController() {
     ];
 
     let activePlayer = players[0];
-    const getActivePlayer = () => activePlayer;
+    const getActivePlayer  = () => activePlayer;
     const switchActivePlayer = () => {
         activePlayer == players[0] ? activePlayer = players[1] : activePlayer = players[0];
     }
 
     const makePlay = (x, y) => {
-        if (gameboard.board[x][y] == '_') {
-            gameboard.board[x][y] = getActivePlayer.marker;
-            switchActivePlayer();
+        if (board[x][y] == '_') {
+            board[x][y] = getActivePlayer().marker;
             gameboard.printBoard();
+        }
+        else {
+            console.log('Not possible, square is already played');
+            gameboard.printBoard();
+        }
+        if (checkWinner()) {
+            gameboard.createBoard();
+        };
+        switchActivePlayer();
+    }
+
+    const checkWinner = () => {
+        let row = 0;
+        let column = 0;
+        for (row; row < 3; row++) {
+            if (board[row] == board[row + 1] == board[row + 2]) {
+                
+            }
         }
     }
 
@@ -68,4 +87,6 @@ function displayController() {
     }
 }
 
+gameboard.createBoard();
+gameboard.printBoard();
 const game = displayController();

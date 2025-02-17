@@ -60,11 +60,12 @@ h6 {
 
 /* Styling */
 :root {
-    --defaultf-fonts: system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--defaultf-fonts: system-ui, "Segoe UI", Helvetica, Arial, sans-serif,
+		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    font-family: var(--default-fonts);
+	height: 100vh;
+	width: 100%;
+	font-family: var(--default-fonts);
 }

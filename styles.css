@@ -272,6 +272,7 @@ dialog[open] {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 32px;
 
 	position: fixed;
 	top: 0;
@@ -286,15 +287,16 @@ dialog[open] {
 	border: none;
 	outline: none;
 	overflow: auto;
-	backdrop-filter: blur(3px);
-	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
 	transition: top 0.5s, left 0.5s, backdrop-filter 0.5s;
 	z-index: 2;
 }
 
 dialog .winner-message {
+	text-align: center;
 	color: rgb(255, 171, 91);
-	font-size: 2.5rem;
+	font-size: 4rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
 	text-transform: uppercase;
 	text-shadow: 0 0 10px rgb(0, 0, 0);
@@ -306,17 +308,32 @@ dialog button[type="button"] {
 	color: rgb(255, 242, 219);
 	background: rgb(0, 48, 146);
 	outline: none;
+	border: 1px solid rgb(255, 171, 91);
 	border-radius: 5px;
 	font-size: 1.2rem;
 	font-weight: 900;
 	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
-	transition: font-size 0.2s, scale 0.2s;
+	transition: scale 0.2s, color 0.2s;
 }
 
 dialog button[type="button"]:hover {
+	color: rgb(255, 171, 91);
 	scale: 1.05;
 }
 
 dialog button[type="button"]:active {
 	scale: 1;
+}
+
+dialog[open] {
+	animation: fadein 0.5s forwards;
+}
+
+@keyframes fadein {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

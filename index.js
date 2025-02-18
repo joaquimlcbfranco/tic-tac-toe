@@ -39,7 +39,7 @@ function createPlayer(name, marker) {
     }
 }
 
-function displayController() {
+function gameController() {
     const board = gameboard.board;
     const playerOne = createPlayer('quim', 'X');
     const playerTwo = createPlayer('blan', 'O');
@@ -64,52 +64,41 @@ function displayController() {
             console.log('Not possible, square is already played');
             gameboard.printBoard();
         }
-        if (checkWinner()) {
-            gameboard.printBoard();
-            console.log(`Game over! The winner is ${getActivePlayer().name}`);
-        };
-        if (checkTie()) {
-            gameboard.printBoard();
-            console.log('It\'s a tie!');
-        }
+        checkWinner(getActivePlayer());
+        switchActivePlayer();
     }
 
-    const checkWinner = () => {
+    const checkWinner = (player) => {
+        console.log('entered');
         for (let i = 0; i < board.length; i++) {
-            if (board[i][0] == board[i][1] == board[i][2]) {
-                return true;
+            if (board[i].every((cell) => cell == player.marker)) {
+                return console.log(`Game over! The winner is ${player.name}!`);
             }
-            if (board[0][i] == board[1][i] == board[2][i]) {
-                return true;
+            if (board[0][i] == player.marker && board[1][i] == player.marker && board[2][i] == player.marker) {
+                return console.log(`Game over! The winner is ${player.name}!`);
             }
         }
-        if (board[0][0] == board[1][1] == board[2][2]) {
-            return true;
+        if (board[0][0] == player.marker && board[1][1] == player.marker && board[2][2] == player.marker) {
+            return console.log(`Game over! The winner is ${player.name}!`);
         }
-        if (board[0][2] == board[1][1] == board[2][0]) {
-            return true;
-        }
-
-        return false;
-    }
-
-    const checkTie = () => {
-        const cellValue = board.find((value) => value == '_');
-        if (cellValue == undefined) {
-            return true;
+        if (board[0][2] == player.marker && board[1][1] == player.marker && board[2][0] == player.marker) {
+            return console.log(`Game over! The winner is ${player.name}!`);
         }
 
-        return false;
+        let cellCount = 0;
+        for (let i = 0; i < board.length; i++) {
+            for (value of board[i]) {
+                if (value !== '_') cellCount++;
+            }
+        }
+        if (cellCount == 9) return console.log('Game over! It\'s a tie!');
     }
 
     return {
-        playerOne,
-        activePlayer,
         makePlay,
-        checkWinner,
     }
 }
 
 gameboard.createBoard();
 gameboard.printBoard();
-const game = displayController();
+const game = gameController();

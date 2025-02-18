@@ -269,6 +269,7 @@ button[type="submit"]:hover {
 dialog[open] {
 	all: unset;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
@@ -289,6 +290,14 @@ dialog[open] {
 	-webkit-backdrop-filter: blur(10px);
 	transition: top 0.5s, left 0.5s, backdrop-filter 0.5s;
 	z-index: 2;
+}
+
+dialog .winner-message {
+	color: rgb(255, 171, 91);
+	font-size: 2.5rem;
+	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+	text-transform: uppercase;
+	text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 dialog button[type="button"] {

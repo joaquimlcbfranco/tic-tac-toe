@@ -197,16 +197,21 @@ button[type="submit"]:hover {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
-	padding: 32px;
+	padding: 24px;
 	gap: 5px;
 }
 
 .board-square {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 7rem;
 	width: 7rem;
 	border: 2px solid rgb(255, 242, 219);
 	background-color: rgb(255, 242, 219);
 	border-radius: 5px;
+	font-size: 4rem;
+	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
 }
 
 .footer {
@@ -215,4 +220,27 @@ button[type="submit"]:hover {
 	color: rgb(255, 171, 91);
 	font-size: 1.4rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+}
+
+.footer a,
+.footer a:visited,
+.footer a:active {
+	text-decoration: none;
+	color: rgb(255, 171, 91);
+	position: relative;
+}
+
+.footer a::after {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	content: "";
+	width: 0%;
+	height: 1px;
+	background-color: rgb(255, 171, 91);
+	transition: width 0.2s;
+}
+
+.footer a:hover::after {
+	width: 100%;
 }

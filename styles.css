@@ -87,9 +87,10 @@ body {
 .header {
 	padding: 32px;
 	background-color: rgb(0, 48, 146);
-	color: rgb(255, 242, 219);
+	color: rgb(255, 171, 91);
 	font-size: 3rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+	text-transform: uppercase;
 }
 
 .main {
@@ -99,15 +100,73 @@ body {
 }
 
 .player-details {
-	padding-top: 32px;
 	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+	padding-top: 32px;
 }
 
-.player-one, .player-two {
+.player-one,
+.player-two {
 	display: flex;
 	flex-direction: column;
+	gap: 8px;
 	align-items: center;
-	justify-content: center;
+}
+
+.player-one h2,
+.player-two h2 {
+	color: rgb(255, 171, 91);
+	font-size: 2rem;
+	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+	text-transform: uppercase;
+}
+
+form {
+	display: flex;
+	gap: 8px;
+}
+
+.form-row {
+	display: flex;
+	position: relative;
+}
+
+.form-row input {
+	position: relative;
+	width: 150px;
+	padding: 10px;
+	font-size: 0.9rem;
+	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
+	font-weight: bolder;
+	color: rgb(255, 242, 219);
+	background: none;
+	border: 1px solid rgb(255, 171, 91);
+	border-radius: 5px;
+	outline: none;
+}
+
+.form-row label {
+	position: absolute;
+	padding: 10px;
+	pointer-events: none;
+	font-size: 0.9rem;
+	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
+	font-weight: bold;
+	text-transform: lowercase;
+	color: rgb(255, 242, 219);
+}
+
+.form-row input:focus ~ label,
+.form-row input:not(:placeholder-shown) ~ label {
+	top: -10px;
+	left: 20px;
+	background-color: rgb(0, 135, 158);
+	border-left: 2px solid rgb(255, 171, 91);
+	border-right: 2px solid rgb(255, 171, 91);
+	border-radius: 20%;
+	padding: 0 10px;
+	font-size: 0.75rem;
 }
 
 .board {
@@ -126,17 +185,10 @@ body {
 	border-radius: 5px;
 }
 
-.main input {
-	background: none;
-	position: absolute;
-}
-
-
-
 .footer {
 	padding: 32px;
 	background-color: rgb(0, 48, 146);
-	color: rgb(255, 242, 219);
+	color: rgb(255, 171, 91);
 	font-size: 1.4rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
 }

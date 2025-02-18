@@ -91,6 +91,7 @@ body {
 	font-size: 3rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
 	text-transform: uppercase;
+	text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 .main {
@@ -212,6 +213,12 @@ button[type="submit"]:hover {
 	border-radius: 5px;
 	font-size: 4rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+	box-shadow: 0 0 10px rgb(0, 0, 0, 0.75);
+	transition: border 0.2s;
+}
+
+.board-square:hover {
+	border: 3px solid rgb(255, 171, 91);
 }
 
 .footer {
@@ -220,6 +227,7 @@ button[type="submit"]:hover {
 	color: rgb(255, 171, 91);
 	font-size: 1.4rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
+	text-shadow: 0 0 10px rgb(0, 0, 0);
 }
 
 .footer a,

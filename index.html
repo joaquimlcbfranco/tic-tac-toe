@@ -17,13 +17,13 @@
         <div class="player-details">
             <div class="player-one">
                 <h2>Player One</h2>
-                <form>
+                <form id="player-one-form">
                     <div class="form-row">
-                        <input type="text" autocomplete="off" id="player-one-name" placeholder=" ">
+                        <input type="text" autocomplete="off" id="player-one-name" placeholder=" " pattern="[A-Za-z]+">
                         <label for="player-one-name">Name</label>
                     </div>
                     <div class="form-row">
-                        <input type="text" autocomplete="off" id="player-one-marker" placeholder=" " pattern="[A-Za-z]{1}">
+                        <input type="text" autocomplete="off" class="marker" id="player-one-marker" placeholder=" " pattern="[A-Za-z]{1}">
                         <label for="player-one-marker">Marker</label>
                     </div>                    
                     <button type="submit">submit</button>
@@ -31,13 +31,13 @@
             </div>
             <div class="player-two">
                 <h2>Player Two</h2>
-                <form>
+                <form id="player-two-form">
                     <div class="form-row">
-                        <input type="text" autocomplete="off" id="player-two-name" placeholder=" ">
+                        <input type="text" autocomplete="off" id="player-two-name" placeholder=" " pattern="[A-Za-z]+">
                         <label for="player-two-name">Name</label>
                     </div>
                     <div class="form-row">
-                        <input type="text" autocomplete="off" id="player-two-marker" placeholder=" " pattern="[A-Za-z]{1}">
+                        <input type="text" autocomplete="off" class="marker" id="player-two-marker" placeholder=" " pattern="[A-Za-z]{1}">
                         <label for="player-two-marker">Marker</label>
                     </div>   
                     <button type="submit">submit</button>
@@ -45,15 +45,15 @@
             </div>
         </div>
         <div class="board">
-            <div class="board-square" row="0" col="0">X</div>
-            <div class="board-square" row="0" col="1">X</div>
-            <div class="board-square" row="0" col="2">X</div>
-            <div class="board-square" row="1" col="0">O</div>
-            <div class="board-square" row="1" col="1">O</div>
-            <div class="board-square" row="1" col="2">O</div>
-            <div class="board-square" row="2" col="0">O</div>
-            <div class="board-square" row="2" col="1">X</div>
-            <div class="board-square" row="2" col="2">X</div>
+            <div class="board-square" row="0" col="0"></div>
+            <div class="board-square" row="0" col="1"></div>
+            <div class="board-square" row="0" col="2"></div>
+            <div class="board-square" row="1" col="0"></div>
+            <div class="board-square" row="1" col="1"></div>
+            <div class="board-square" row="1" col="2"></div>
+            <div class="board-square" row="2" col="0"></div>
+            <div class="board-square" row="2" col="1"></div>
+            <div class="board-square" row="2" col="2"></div>
         </div>
     </section>
     <section class="footer">

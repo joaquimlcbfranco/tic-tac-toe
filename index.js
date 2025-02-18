@@ -11,13 +11,6 @@ const gameboard = (function () {
         }
     }
 
-    const printBoard = () => {
-        for (let i = 0; i < height; i++) {
-            const row = gameboard.board[i].join(' | ');
-            console.log(`Row number: ${i} | ${row} |`);
-        }
-    }
-
     const reset = () => {
         for (let i = 0; i < height; i++) {
             board[i] = [];
@@ -29,13 +22,11 @@ const gameboard = (function () {
         boardSquares.forEach((square) => {
             square.textContent = '';
         });
-        gameboard.printBoard();
     }
 
     return {
         board,
         createBoard,
-        printBoard,
         reset,
     }
 })();
@@ -51,48 +42,45 @@ const game = (() => {
     let gameRunning = true;
     const board = gameboard.board;
 
-    playerOne = createPlayer('Player 1', 'X');
-    playerTwo = createPlayer('Player 2', 'O');
     const players = [
-        playerOne,
-        playerTwo,
+        createPlayer('Player 1', 'X'),
+        createPlayer('Player 2', 'O'),
     ];
 
     let activePlayer = players[0];
-    const getActivePlayer  = () => activePlayer;
+    const getActivePlayer  = () => game.activePlayer;
     const switchActivePlayer = () => {
-        activePlayer == players[0] ? activePlayer = players[1] : activePlayer = players[0];
+        game.activePlayer == players[0] ? game.activePlayer = players[1] : game.activePlayer = players[0];
     }
 
     const makePlay = (x, y, square) => {
         if (board[x][y] == '_') {
             board[x][y] = getActivePlayer().marker;
             square.textContent = board[x][y];
-            gameboard.printBoard();
+            checkWinner(getActivePlayer());
+            if (gameRunning) switchActivePlayer();
         }
         else {
-            console.log('Not possible, square is already played');
-            gameboard.printBoard();
+            alert('Not possible, square is already played');
         }
-        checkWinner(getActivePlayer());
-        if (gameRunning) switchActivePlayer();
+
     }
 
     const checkWinner = (player) => {
         console.log('entered');
         for (let i = 0; i < board.length; i++) {
             if (board[i].every((cell) => cell == player.marker)) {
-                gameOver(`Game over! The winner is ${player.name}!`);
+                gameOver(`Game over!<br>The winner is ${player.name}!`);
             }
             if (board[0][i] == player.marker && board[1][i] == player.marker && board[2][i] == player.marker) {
-                gameOver(`Game over! The winner is ${player.name}!`);
+                gameOver(`Game over!<br>The winner is ${player.name}!`);
             }
         }
         if (board[0][0] == player.marker && board[1][1] == player.marker && board[2][2] == player.marker) {
-            gameOver(`Game over! The winner is ${player.name}!`);
+            gameOver(`Game over!<br>The winner is ${player.name}!`);
         }
         if (board[0][2] == player.marker && board[1][1] == player.marker && board[2][0] == player.marker) {
-            gameOver(`Game over! The winner is ${player.name}!`);
+            gameOver(`Game over!<br>The winner is ${player.name}!`);
         }
 
         let cellCount = 0;
@@ -102,13 +90,28 @@ const game = (() => {
             }
         }
         if (cellCount == 9) {
-            gameOver('Game over! It\'s a tie!')
+            gameOver('Game over!<br>It\'s a tie!')
         }
     }
 
+    const dialog = document.querySelector('dialog');
+    const winnerMessage = document.querySelector('.winner-message');
+    const dialogButton = document.querySelector('dialog button[type="button"]')
+
     const gameOver = (message) => {
         gameRunning = false;
-        
+        winnerMessage.innerHTML = message;
+        dialog.showModal();
+
+        dialogButton.addEventListener('click', () => {
+            gameboard.reset();
+            players[0] = createPlayer('Player 1', 'X');
+            players[1] = createPlayer('Player 2', 'O');
+            game.activePlayer = players[0];
+
+            dialog.close();
+            gameRunning = true;
+        });
     }
 
     return {
@@ -163,6 +166,7 @@ const getUserInput = (() => {
             game.activePlayer = game.players[0];
             header.textContent = name.value;
             warningLeft.classList.add('hide');
+            gameboard.reset();
         }
         else {
             warningLeft.classList.remove('hide');
@@ -188,14 +192,13 @@ const getUserInput = (() => {
             game.players[1] = createPlayer(name.value, marker.value);
             game.activePlayer = game.players[0];
             header.textContent = name.value;
-            if (playerTwoDiv.querySelector('.warning') != null) {
-                warningRight.classList.add('hide');
-            }
+            warningRight.classList.add('hide');
+            gameboard.reset();
         }
         else {
             warningRight.classList.remove('hide');
         }
     });
 })();
+
 gameboard.createBoard();
-gameboard.printBoard();

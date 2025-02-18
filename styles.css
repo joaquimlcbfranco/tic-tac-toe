@@ -85,7 +85,7 @@ body {
 }
 
 .header {
-	padding: 32px;
+	padding: 24px;
 	background-color: rgb(0, 48, 146);
 	color: rgb(255, 171, 91);
 	font-size: 3rem;
@@ -103,7 +103,7 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: space-evenly;
-	padding-top: 32px;
+	padding-top: 24px;
 }
 
 .player-one,
@@ -117,9 +117,10 @@ body {
 .player-one h2,
 .player-two h2 {
 	color: rgb(255, 171, 91);
-	font-size: 2rem;
+	font-size: 2.5rem;
 	font-family: "Jersey 15", "Doto", var(--defaultf-fonts);
 	text-transform: uppercase;
+	text-shadow: 0 0 10px rgb(0, 0, 0, 0.5);
 }
 
 form {
@@ -138,7 +139,7 @@ form {
 	padding: 10px;
 	font-size: 0.9rem;
 	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
-	font-weight: bolder;
+	font-weight: 900;
 	color: rgb(255, 242, 219);
 	background: none;
 	border: 1px solid rgb(255, 171, 91);
@@ -152,21 +153,44 @@ form {
 	pointer-events: none;
 	font-size: 0.9rem;
 	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
-	font-weight: bold;
+	font-weight: 900;
 	text-transform: lowercase;
 	color: rgb(255, 242, 219);
+	transition-property: top, left, padding, scale;
+	transition-duration: 0.2s;
+}
+
+.form-row input:hover ~ label {
+	scale: 1.05;
 }
 
 .form-row input:focus ~ label,
 .form-row input:not(:placeholder-shown) ~ label {
 	top: -10px;
 	left: 20px;
+	color: rgb(255, 171, 91);
 	background-color: rgb(0, 135, 158);
-	border-left: 2px solid rgb(255, 171, 91);
-	border-right: 2px solid rgb(255, 171, 91);
-	border-radius: 20%;
 	padding: 0 10px;
-	font-size: 0.75rem;
+	font-size: 0.8rem;
+	font-style: italic;
+}
+
+button[type="submit"] {
+	width: 75px;
+	color: rgb(255, 242, 219);
+	background: none;
+	outline: none;
+	border: 1px solid rgb(255, 171, 91);
+	border-radius: 5px;
+	font-size: 0.9rem;
+	font-weight: 900;
+	font-family: "Doto", "Jersey 15", var(--defaultf-fonts);
+	transition: font-size 0.2s, background-color 0.2s, text-decoration 0.2s;
+}
+
+button[type="submit"]:hover {
+	font-size: 0.95rem;
+	background-color: rgb(255, 171, 91);
 }
 
 .board {
